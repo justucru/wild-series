@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    {{ dump(slug) }}
+    {% if title == null %}
+        <h1>Aucune série sélectionnée, veuillez choisir une série</h1>
+    {% else %}
+        <h1>{{ title }}</h1>
+    {% endif %}
+{% endblock %}
