@@ -1,0 +1,11 @@
+{# templates/wild/season.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block body %}
+{{ program.title }} - Season {{ season.number }} <br>
+
+List of episodes : <br>
+    {% for episode in episodes %}
+       Episode {{ episode.number }} : {{ episode.title }} <br>
+    {% endfor %}
+{% endblock %}

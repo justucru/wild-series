@@ -1,21 +1,58 @@
 // assets/css/global.scss
 
 // customize some Bootstrap variables
-$primary: #2a0036;
-$secondary: #ffffa3;
-$tertiary: #2b1d02;
+$primary: #2a0036; //purple
+$secondary: #ffffa3; //yellow
+$tertiary: #2b1d02; //brown
+$titles: 'Patrick Hand SC', cursive;
+$text: 'Raleway', sans-serif;
 
 // the ~ allows you to reference things in node_modules
 @import "~bootstrap/scss/bootstrap";
 
+
 body {
-    background-color: $secondary;
+    background-color: white;
+    a {
+        font-family: $text;
+        font-size: 16px;
+        color: $primary;
+    }
 }
 
 nav {
     background-color: $primary;
+    box-shadow: 2px 2px 2px $tertiary;
     a {
         color: $secondary;
+        font-family: $titles;
     }
+}
 
+main {
+    margin: 10px;
+}
+
+h1 {
+    font-family: $titles;
+    font-size: 40px;
+    color: $tertiary;
+}
+
+h2 {
+    font-family: $titles;
+    font-size: 24px;
+    color: $primary;
+}
+
+p {
+    font-family: $text;
+    font-size: 16px;
+    color: $tertiary;
+}
+
+.h1HomePage {
+    margin: 5px auto;
+    padding: 30px;
+    font-size: 60px;
 }
