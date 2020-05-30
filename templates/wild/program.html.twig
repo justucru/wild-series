@@ -9,7 +9,7 @@
         <div class="media-body">
             <h1 class="mt-0">{{ program.title }}</h1>
             <p>{{ program.summary }}</p>
-            <p>Categorie : {{ program.category.name }}</p>
+            <p>Category : {{ program.category.name }}</p>
             {% for season in seasons  %}
                <a href="{{ path('show_season', { 'seasonId': season.id }) }}">Season {{ season.number }}</a> <br>
             {% endfor %}
@@ -17,7 +17,7 @@
     </div>
 
     <a href="{{ path('wild_index') }}">
-        Retour à l'accueil
+        Back to homepage
     </a>
 
 {% endblock %}
