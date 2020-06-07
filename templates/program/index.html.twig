@@ -18,7 +18,7 @@
         <tbody>
         {% for program in programs %}
             <tr>
-                <td>{{ program.id }}</td>
+                <td>{{ loop.index }}</td>
                 <td>{{ program.title }}</td>
                 <td>{{ program.summary }}</td>
                 <td><img src="{{ program.poster }}" class="indexImg" alt="series poster"></td>
