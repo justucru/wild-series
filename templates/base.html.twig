@@ -32,22 +32,24 @@
                     </ul>
                 </div>
             </nav>
-            <form class="form-inline">
+            <form class="form-inline search">
                 <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                <button class="btn btn-outline-success my-2 my-sm-0 search-btn" type="submit">Search</button>
             </form>
         {% endblock %}
+        <main>
         {% block body %}
 
         {% endblock %}
-        {# {% block footer %}
+        </main>
+        {% block footer %}
             <footer class="fixed-bottom">
                 <a href="{{ path('app_index') }}"><i class="fas fa-home footer-btn"></i></a>
                 <a href="{{ path('program_index') }}"><i class="fas fa-tv footer-btn"></i></a>
                 <a href="{{ path('category_index') }}"><i class="fas fa-folder footer-btn"></i></a>
                 <a href="#"><i class="fas fa-user footer-btn"></i></a>
             </footer>
-        {% endblock %}#}
+        {% endblock %}
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}
         {% endblock %}
