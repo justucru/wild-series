@@ -10,9 +10,12 @@
             Penny Dreadful
         </a>
     <h2>Have a preferred genre ? Search by category !</h2>
-        <a href="{{ path('show_category', { 'categoryName': "Horreur" }) }}">
-            Horror
-        </a>
+        {% for category in categories %}
+        <a href="{{ path('show_category', { 'categoryName': category.name }) }}">
+                {{ category.name }}<br>
+        {% endfor %}
+        </a><br><br>
+        <p>Can't find the genre you're looking for ? <a href="{{ path('wild_addCategory') }}">Submit a new category !</a></p>
         <br>
         <a href="{{ path('wild_index') }}"><h2>Not picky ? See all shows !</h2></a>
 

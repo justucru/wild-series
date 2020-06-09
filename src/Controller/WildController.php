@@ -6,10 +6,12 @@ use App\Repository\ProgramRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Request;
 use App\Entity\Program;
 use App\Entity\Category;
 use App\Entity\Season;
 use App\Entity\Episode;
+use App\Form\ProgramSearchType;
 
 /**
  * @Route("/wild")
@@ -21,9 +23,10 @@ Class WildController extends AbstractController
      * SHow all rows from Program's entity
      *
      * @Route("/", name="wild_index")
+     * @param Request $request
      * @return Response A response instance
      */
-    public function index() : Response
+    public function index(Request $request) : Response
     {
         $programs = $this->getDoctrine()
             ->getRepository(Program::class)
@@ -35,9 +38,18 @@ Class WildController extends AbstractController
             );
         }
 
-        return $this->render(
-            'wild/index.html.twig',
-            ['programs' => $programs]
+        $form = $this->createForm(ProgramSearchType::class);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted()) {
+            $data = $form->getData();
+            // TODO: Faire une recherche dans la BDD avec les infos de $data
+        }
+
+        return $this->render('wild/index.html.twig', [
+             'programs' => $programs,
+             'form' => $form->createView()
+            ]
         );
     }
 

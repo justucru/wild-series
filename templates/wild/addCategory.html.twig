@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+{% form_theme form 'bootstrap_4_horizontal_layout.html.twig' %}
+
+{% block title %}Add a category{% endblock %}
+
+{% block body %}
+    <h1>Submit a new genre</h1>
+
+    {# add a category form #}
+    {{ form_start(form) }}
+    {{ form_row(form.name) }}
+    <button type="submit" name="btnSubmit" class="btn btn-primary">Submit</button>
+    {{ form_end(form) }}
+
+    <br>
+    <a href="{{ path('app_index') }}">
+        Retour à l'accueil
+    </a>
+
+{% endblock %}
