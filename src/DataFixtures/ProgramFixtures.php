@@ -7,6 +7,7 @@ use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Faker;
+use App\Service\Slugify;
 
 class ProgramFixtures extends Fixture implements DependentFixtureInterface
 {
@@ -56,6 +57,11 @@ class ProgramFixtures extends Fixture implements DependentFixtureInterface
             $program->setTitle($title);
             $program->setSummary($data['summary']);
             $program->setPoster($data['poster']);
+
+            $slugify = new Slugify();
+            $slug = $slugify->generate($program->getTitle());
+            $program->setSlug($slug);
+
             $manager->persist($program);
             $this->addReference('program_' . $i, $program);
             $program->setCategory(
@@ -72,11 +78,13 @@ class ProgramFixtures extends Fixture implements DependentFixtureInterface
                 ->setTitle($faker->company())
                 ->setSummary($faker->realText($maxNbChars = 200, $indexSize = 2))
                 ->setPoster($faker->imageUrl(80, 120));
-                $manager->persist($program);
-                $this->addReference('program_' . $i, $program);
-                $program->setCategory(
-                    $this->getReference('category_'.random_int(0,10)));
-            ;
+            $slug = $slugify->generate($program->getTitle());
+            $program->setSlug($slug);
+            $manager->persist($program);
+            $this->addReference('program_' . $i, $program);
+            $program->setCategory(
+                $this->getReference('category_'.random_int(0,10))
+            );
 
             $manager->persist($program);
         }
