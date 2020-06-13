@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>New show on Wild Series</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+    </style>
+</head>
+<body>
+<main>
+    {% block body %}
+            <h1 style="font-size: 40px;box-shadow: 2px 2px 2px #2b1d02;text-align: center;background-color: #2a0036;color: #ffffa3;font-family: 'Patrick Hand SC', cursive;" >NEW! Discover {{ program.title }} on Wild Series !</h1>
+            <p style="font-size: 16px;color: #2b1d02;font-family: 'Raleway', sans-serif;">Check out this hot new show on Wild Series
+                <a href="{{ path('program_show', {'slug': program.slug}) }}">here</a>!
+            </p>
+
+    {% endblock %}
+</main>
+    {% block footer %}
+    {% endblock %}
+    {% block javascripts %}
+        {{ encore_entry_script_tags('app') }}
+    {% endblock %}
+</body>
+</html>
