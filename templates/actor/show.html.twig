@@ -14,7 +14,7 @@
             <tr>
                 <th>Associated shows</th>
                 {% for program in actor.programs %}
-                    <td><a href="{{ path('program_show', { 'id': program.id }) }}">{{ program.title }}</a></td>
+                    <td><a href="{{ path('program_show', { 'slug': program.slug }) }}">{{ program.title }}</a></td>
                 {% else %}
                     <td>No shows associated with this actor.</td>
                 {% endfor %}
@@ -24,7 +24,7 @@
 
     <a href="{{ path('actor_index') }}">back to list</a>
 
-    <a href="{{ path('actor_edit', {'id': actor.id}) }}">edit</a>
+    <a href="{{ path('actor_edit', {'slug': actor.slug}) }}">edit</a>
 
     {{ include('actor/_delete_form.html.twig') }}
 {% endblock %}
