@@ -23,12 +23,14 @@
                         <li class="nav-item active desktop">
                             <a class="nav-link" href="{{ path('program_index') }}">Shows<span class="sr-only">(current)</span></a>
                         </li>
+                        <li class="nav-item active desktop">
                         {% if app.user %}
                             {{ app.user.email }}
                             <a href="{{ path('app_logout') }}">Logout</a>
                         {% else %}
                             <a href="{{ path('app_login') }}">Login</a>
                         {% endif %}
+                        </li>
                     </ul>
                 </div>
             </nav>

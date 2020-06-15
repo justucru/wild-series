@@ -49,7 +49,7 @@ class SeasonController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="season_show", methods={"GET"})
+     * @Route("/{number}", name="season_show", methods={"GET"})
      */
     public function show(Season $season): Response
     {

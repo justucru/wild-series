@@ -26,9 +26,35 @@
         </tbody>
     </table>
 
+    {% if app.user %}
+        <h3>Ajouter un commentaire</h3>
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <button class="btn">{{ button_label|default('Save') }}</button>
+        {{ form_end(form) }}
+    {% else %}
+        <p> Please <a href="{{ path('app_login') }}">login</a> to leave a comment!</p>
+    {% endif %}
+<br><br>
+    <strong>Comments:</strong>
+    <ul>
+        {% for comment in episodeComments %}
+            <li>{{ comment.comment }} <br>
+                <strong>{{ comment.rate }}</strong> out of 5
+                <br>
+                By {{ comment.author.email }}
+            </li>
+        {% else %}
+            No comments yet!
+        {% endfor %}
+    </ul>
+
+
+
+    <br><br>
     <a href="{{ path('episode_index') }}">back to list</a>
-
-    <a href="{{ path('episode_edit', {'id': episode.id}) }}">edit</a>
-
+    <br>
+    <a href="{{ path('episode_edit', {'slug': episode.slug}) }}">edit</a>
+    <br>
     {{ include('episode/_delete_form.html.twig') }}
 {% endblock %}

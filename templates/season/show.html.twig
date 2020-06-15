@@ -26,6 +26,15 @@
         </tbody>
     </table>
 
+    <strong>Episodes:</strong>
+    <ul>
+        {% for episode in season.episodes %}
+            <li><a href="{{ path('episode_show', { 'slug': episode.slug }) }}">{{ episode.number }}. {{ episode.title }} </a> </li>
+        {% else %}
+            <li>No episode associated with this show.</li>
+        {% endfor %}
+    </ul>
+
     <a href="{{ path('season_index') }}">back to list</a>
 
     <a href="{{ path('season_edit', {'id': season.id}) }}">edit</a>

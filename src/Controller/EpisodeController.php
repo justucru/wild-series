@@ -2,10 +2,14 @@
 
 namespace App\Controller;
 
+use App\Entity\Comment;
 use App\Entity\Episode;
+use App\Entity\User;
+use App\Form\CommentType;
 use App\Form\EpisodeType;
 use App\Repository\EpisodeRepository;
 use App\Service\Slugify;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -52,12 +56,36 @@ class EpisodeController extends AbstractController
     }
 
     /**
-     * @Route("/{slug}", name="episode_show", methods={"GET"})
+     * @Route("/{slug}", name="episode_show", methods={"GET","POST"})
      */
-    public function show(Episode $episode): Response
+    public function show(Episode $episode, Request $request): Response
     {
+        $comment = new Comment();
+
+        $author = $this->getDoctrine()
+            ->getRepository(User::class)
+            ->findOneBy(['id' => $this->getUser()]);
+
+        $form = $this->createForm(CommentType::class, $comment);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form ->isValid()) {
+            $em= $this->getDoctrine()->getManager();
+            $comment = $form->getData();
+            $comment->setAuthor($author);
+            $comment->setEpisode($episode);
+            $em->persist($comment);
+            $em->flush();
+        }
+
+        $episodeComments = $this->getDoctrine()
+            ->getRepository(Comment::class)
+            ->findBy(['episode' => $episode]);
+
         return $this->render('episode/show.html.twig', [
             'episode' => $episode,
+            'episodeComments' => $episodeComments,
+            'form' => $form->createView()
         ]);
     }
 
