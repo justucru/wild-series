@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use App\Repository\CategoryRepository;
-use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -11,6 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use App\Form\CategoryType;
 use App\Entity\Category;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 /**
  * @Route("/category")
@@ -33,6 +33,7 @@ class CategoryController extends AbstractController
      * @Route("/wild/addCategory", name="wild_addCategory")
      * @param Request $request
      * @return Response A response instance
+     * @IsGranted("ROLE_ADMIN")
      */
     public function add(Request $request, EntityManagerInterface $em) : Response {
 

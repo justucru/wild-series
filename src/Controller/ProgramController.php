@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Service\Slugify;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 /**
  * @Route("/program")
@@ -30,6 +31,7 @@ class ProgramController extends AbstractController
 
     /**
      * @Route("/new", name="program_new", methods={"GET","POST"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function new(Request $request, Slugify $slugify, MailerInterface $mailer): Response
     {
@@ -76,6 +78,7 @@ class ProgramController extends AbstractController
 
     /**
      * @Route("/{slug}/edit", name="program_edit", methods={"GET","POST"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function edit(Request $request, Program $program, Slugify $slugify): Response
     {
@@ -99,6 +102,7 @@ class ProgramController extends AbstractController
 
     /**
      * @Route("/{slug}", name="program_delete", methods={"DELETE"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function delete(Request $request, Program $program): Response
     {
