@@ -9,9 +9,14 @@
 @import "~@fortawesome/fontawesome-free/scss/fontawesome.scss";
 @import "~@fortawesome/fontawesome-free/scss/solid.scss";
 
+html, body {
+    height: 100%; //sticky footer
+}
 
 body {
     background-color: white;
+    display: flex;
+    flex-direction: column;
     a {
         font-family: $text;
         font-size: 16px;
@@ -28,8 +33,18 @@ nav {
     }
 }
 
+.search {
+    margin: 20px auto;
+    .search-btn {
+        color: $primary;
+        background-color: $secondary;
+    }
+}
+
 main {
-    margin: 10px;
+    margin: 10px 10px 95px 10px;
+    padding: 5px 10px;
+    flex: 1 0 auto;
 }
 
 h1 {
@@ -56,6 +71,14 @@ p {
     font-size: 60px;
 }
 
+.home-title {
+    margin: 0 auto;
+    p {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+}
+
 .indexImg {
     width: 80px;
     height: auto;
@@ -64,9 +87,17 @@ p {
 // Footer
 footer {
     width: 100%;
-    height: 50px;
+    height: 75px;
+    flex-shrink: 0;
+    background-color: $tertiary;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
     .footer-btn {
-        width: 25px;
-        height: auto;
+        margin: 1px;
+        padding: 5px;
+        height: 80px;
+        width: auto;
+        color: $secondary;
     }
 }
