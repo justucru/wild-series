@@ -55,6 +55,7 @@ Encore
 
     // enables Sass/SCSS support
     .enableSassLoader()
+    .addStyleEntry('css/app', './assets/css/app.scss')
 
     // uncomment if you use TypeScript
     //.enableTypeScriptLoader()

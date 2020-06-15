@@ -51,7 +51,7 @@ class CategoryController extends AbstractController
             return $this->redirectToRoute('app_index');
         }
 
-        return $this->render('wild/addCategory.html.twig',[
+        return $this->render('category/addCategory.html.twig',[
             'form'=>$form->createView()
             ]);
     }

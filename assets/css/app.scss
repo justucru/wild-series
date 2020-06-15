@@ -1,14 +1,13 @@
 // assets/css/global.scss
 
 // customize some Bootstrap variables
-$primary: #2a0036; //purple
-$secondary: #ffffa3; //yellow
-$tertiary: #2b1d02; //brown
-$titles: 'Patrick Hand SC', cursive;
-$text: 'Raleway', sans-serif;
+@import '_vars.scss';
 
 // the ~ allows you to reference things in node_modules
 @import "~bootstrap/scss/bootstrap";
+
+@import "~@fortawesome/fontawesome-free/scss/fontawesome.scss";
+@import "~@fortawesome/fontawesome-free/scss/solid.scss";
 
 
 body {
@@ -60,4 +59,14 @@ p {
 .indexImg {
     width: 80px;
     height: auto;
+}
+
+// Footer
+footer {
+    width: 100%;
+    height: 50px;
+    .footer-btn {
+        width: 25px;
+        height: auto;
+    }
 }
